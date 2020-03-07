@@ -12,8 +12,8 @@ jobs:
       with:
         node-version: '10.x'
     - run: |
-      npm install
-      npm install --global gatsby-cli
+        npm install
+        npm install --global gatsby-cli
 
     - name: Use build branch context
       run: |
