@@ -31,6 +31,8 @@ jobs:
         fi
         
         gatsby build --prefix-paths
+        git add --all --force public
+        git commit -a -m 'Push build branch'
         git push
 
     - name: Deploy HTML site to gh-pages
