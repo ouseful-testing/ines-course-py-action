@@ -49,9 +49,14 @@ jobs:
         
         gatsby build --prefix-paths
         git add --all --force public
-        git commit -a -m 'Push build branch'
-        git push
+        git commit -a -m 'Update build branch'
 
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: build
+        force: true
     - name: Deploy HTML site to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:
