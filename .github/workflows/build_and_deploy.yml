@@ -43,7 +43,7 @@ jobs:
     - name: Build docs HTML
       run: |
         if [ ! -f .path_config_set ]; then
-          echo "module.exports.pathPrefix=\"/${GITHUB_REPOSITORY##*/}\"}" >> gatsby-config.js
+          echo "module.exports.pathPrefix=\"/${GITHUB_REPOSITORY##*/}\"" >> gatsby-config.js
           touch .path_config_set
         fi
         
