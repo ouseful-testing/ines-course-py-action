@@ -5,10 +5,26 @@ on:
     branches:
       - master
 jobs:
+  setup:
+    if: (github.event.commits[0].message == 'Initial commit') && (github.run_number == 1)
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Copy Repository Contents
+      uses: actions/checkout@v2
+
+    - name: setup build branch
+      uses: peterjgrainger/action-create-branch@v1.0.0
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        branch: build
+
   builder:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
